@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء Privacy Policy مجاني - Pinterest Developers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 900px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="url"],
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1rem;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #e60023;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary {
+            background: #e60023;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ad081b;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .preview-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 600px;
+            overflow-y: auto;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .preview-box h1 {
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .preview-box h2 {
+            color: #e60023;
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .preview-box p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .hosting-options {
+            margin-top: 20px;
+        }
+
+        .option {
+            background: #f0f8ff;
+            border-right: 4px solid #4a90e2;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .option h4 {
+            color: #4a90e2;
+            margin-bottom: 10px;
+        }
+
+        .recommended {
+            background: #e8f5e9;
+            border-color: #28a745;
+        }
+
+        .recommended h4 {
+            color: #28a745;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Consolas', monospace;
+            font-size: 0.85rem;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+            margin: 10px 0;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border-right: 4px solid #28a745;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .url-display {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-family: monospace;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-shield-alt"></i> منشئ Privacy Policy مجاني</h1>
+            <p>صالح لـ Pinterest Developers وموافق على GDPR/CCPA</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Form Section -->
+            <div class="left-panel">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-edit"></i>
+                        بيانات التطبيق
+                    </div>
+
+                    <div class="form-group">
+                        <label>اسم التطبيق *</label>
+                        <input type="text" id="appName" placeholder="مثال: Pinterest Bulk Publisher" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>اسم الشركة/المطور *</label>
+                        <input type="text" id="companyName" placeholder="مثال: Your Company Name" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>البريد الإلكتروني للتواصل *</label>
+                        <input type="email" id="contactEmail" placeholder="privacy@yourapp.com" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>الموقع الإلكتروني (اختياري)</label>
+                        <input type="url" id="websiteUrl" placeholder="https://yourapp.com" oninput="updatePreview()">
+                    </div>
+
+                    <div class="form-group">
+                        <label>عنوان الشركة (اختياري)</label>
+                        <textarea id="companyAddress" placeholder="المدينة، الدولة" oninput="updatePreview()"></textarea>
+                    </div>
+
+                    <button class="btn btn-primary" onclick="generateHTML()">
+                        <i class="fas fa-magic"></i>
+                        إنشاء صفحة Privacy Policy
+                    </button>
+                </div>
+
+                <div class="card hosting-options">
+                    <div class="card-title">
+                        <i class="fas fa-cloud"></i>
+                        خيارات الاستضافة المجانية
+                    </div>
+
+                    <div class="option recommended">
+                        <h4><span class="badge">موصى به</span> GitHub Pages</h4>
+                        <p>مجاني 100%، دائم، وموثوق</p>
+                        <div class="code-block">
+1. أنشئ حساب على github.com
+2. أنشئ repository جديد: yourusername.github.io
+3. ارفع ملف privacy-policy.html
+4. الرابط: https://yourusername.github.io/privacy-policy.html</div>
+                    </div>
+
+                    <div class="option">
+                        <h4>Netlify</h4>
+                        <p>سريع وسهل، سحب وإفلات</p>
+                        <div class="code-block">
+1. اذهب إلى netlify.com
+2. اسحب ملف HTML مباشرة
+3. احصل على رابط فوري</div>
+                    </div>
+
+                    <div class="option">
+                        <h4>Vercel</h4>
+                        <p>ممتاز للمطورين</p>
+                        <div class="code-block">
+1. سجل في vercel.com
+2. اربط بحساب GitHub
+3. انشر المشروع بنقرة واحدة</div>
+                    </div>
+
+                    <div class="option">
+                        <h4>Google Sites</h4>
+                        <p>الأسهل للمبتدئين</p>
+                        <div class="code-block">
+1. sites.google.com
+2. أنشئ موقع جديد
+3. انسخ محتوى Privacy Policy
+4. انشر واحصل على رابط</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="right-panel">
+                <div class="card">
+                    <div class="card-title">
+                        <i class="fas fa-eye"></i>
+                        معاينة Privacy Policy
+                    </div>
+
+                    <div class="preview-box" id="previewBox">
+                        <h1>Privacy Policy</h1>
+                        <p style="text-align: center; color: #999;">أدخل البيانات على اليسار لرؤية المعاينة</p>
+                    </div>
+
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <strong>تم إنشاء Privacy Policy!</strong>
+                        <p>انسخ الكود أدناه واحفظه في ملف <code>privacy-policy.html</code></p>
+                        <div class="url-display" id="urlDisplay"></div>
+                    </div>
+
+                    <button class="btn btn-success" onclick="copyHTML()" id="copyBtn" style="display: none;">
+                        <i class="fas fa-copy"></i>
+                        نسخ كود HTML
+                    </button>
+
+                    <button class="btn btn-secondary" onclick="downloadHTML()" id="downloadBtn" style="display: none;">
+                        <i class="fas fa-download"></i>
+                        تحميل الملف
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let generatedHTML = '';
+
+        function updatePreview() {
+            const appName = document.getElementById('appName').value || 'Your App Name';
+            const companyName = document.getElementById('companyName').value || 'Your Company';
+            const contactEmail = document.getElementById('contactEmail').value || 'contact@example.com';
+            const websiteUrl = document.getElementById('websiteUrl').value || 'https://example.com';
+            const companyAddress = document.getElementById('companyAddress').value || 'Your Address';
+
+            const preview = `
+                <h1>Privacy Policy</h1>
+                <p style="text-align: center; color: #666; margin-bottom: 30px;">Last updated: ${new Date().toLocaleDateString('en-US')}</p>
+                
+                <h2>1. Introduction</h2>
+                <p>Welcome to <strong>${appName}</strong> ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our application.</p>
+                
+                <h2>2. Information We Collect</h2>
+                <p><strong>2.1 Personal Information:</strong> We may collect your name, email address, and Pinterest account information when you register or use our services.</p>
+                <p><strong>2.2 Usage Data:</strong> We collect information about how you interact with our application, including IP address, browser type, and access times.</p>
+                <p><strong>2.3 Pinterest Data:</strong> With your explicit consent, we access your Pinterest boards and pins solely for the purpose of providing our bulk publishing service.</p>
+                
+                <h2>3. How We Use Your Information</h2>
+                <p>We use your information to:</p>
+                <p>• Provide and maintain our service<br>
+                • Process and schedule your Pinterest pins<br>
+                • Communicate with you about your account<br>
+                • Improve our application and user experience<br>
+                • Comply with legal obligations</p>
+                
+                <h2>4. Data Sharing and Disclosure</h2>
+                <p>We do not sell, trade, or rent your personal information to third parties. We may share data with:</p>
+                <p>• Pinterest (through their API) to perform requested actions<br>
+                • Service providers who assist our operations<br>
+                • Legal authorities when required by law</p>
+                
+                <h2>5. Data Security</h2>
+                <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction.</p>
+                
+                <h2>6. Your Rights</h2>
+                <p>You have the right to:</p>
+                <p>• Access your personal data<br>
+                • Correct inaccurate data<br>
+                • Request deletion of your data<br>
+                • Withdraw consent at any time<br>
+                • Data portability</p>
+                
+                <h2>7. Cookies and Tracking</h2>
+                <p>We use cookies and similar technologies to enhance your experience. You can control cookie settings through your browser.</p>
+                
+                <h2>8. Third-Party Services</h2>
+                <p>Our application integrates with Pinterest. Your use of Pinterest is subject to their Privacy Policy and Terms of Service.</p>
+                
+                <h2>9. Children's Privacy</h2>
+                <p>Our service is not intended for users under 13 years of age. We do not knowingly collect data from children.</p>
+                
+                <h2>10. Changes to This Policy</h2>
+                <p>We may update this Privacy Policy periodically. We will notify you of any changes by posting the new policy on this page.</p>
+                
+                <h2>11. Contact Us</h2>
+                <p>If you have questions about this Privacy Policy, please contact us:</p>
+                <p><strong>${companyName}</strong><br>
+                Email: ${contactEmail}<br>
+                ${companyAddress ? `Address: ${companyAddress}<br>` : ''}
+                ${websiteUrl ? `Website: <a href="${websiteUrl}">${websiteUrl}</a>` : ''}</p>
+                
+                <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+                <p style="text-align: center; color: #999; font-size: 0.85rem;">© ${new Date().getFullYear()} ${companyName}. All rights reserved.</p>
+            `;
+
+            document.getElementById('previewBox').innerHTML = preview;
+        }
+
+        function generateHTML() {
+            const appName = document.getElementById('appName').value || 'Your App Name';
+            const companyName = document.getElementById('companyName').value || 'Your Company';
+            const contactEmail = document.getElementById('contactEmail').value || 'contact@example.com';
+            const websiteUrl = document.getElementById('websiteUrl').value || '';
+            const companyAddress = document.getElementById('companyAddress').value || '';
+
+            if (!document.getElementById('appName').value || !document.getElementById('companyName').value || !document.getElementById('contactEmail').value) {
+                alert('الرجاء ملء الحقول المطلوبة (الحقول ذات النجمة *)');
+                return;
+            }
+
+            generatedHTML = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ${appName}</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .last-updated {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+        }
+        h2 {
+            color: #e60023;
+            font-size: 1.3rem;
+            margin: 30px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        ul {
+            margin: 15px 0;
+            padding-right: 20px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        strong {
+            color: #2c3e50;
+        }
+        a {
+            color: #e60023;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .contact-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px; }
+            h1 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <p class="last-updated">Last updated: ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+        
+        <h2>1. Introduction</h2>
+        <p>Welcome to <strong>${appName}</strong> ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our application.</p>
+        
+        <h2>2. Information We Collect</h2>
+        <p><strong>2.1 Personal Information:</strong> We may collect your name, email address, and Pinterest account information when you register or use our services.</p>
+        <p><strong>2.2 Usage Data:</strong> We collect information about how you interact with our application, including IP address, browser type, pages visited, and access times.</p>
+        <p><strong>2.3 Pinterest Data:</strong> With your explicit consent, we access your Pinterest boards, pins, and profile information solely for the purpose of providing our bulk publishing service. We do not store your Pinterest password.</p>
+        
+        <h2>3. How We Use Your Information</h2>
+        <p>We use your information for the following purposes:</p>
+        <ul>
+            <li>To provide and maintain our bulk publishing service</li>
+            <li>To process and schedule your Pinterest pins</li>
+            <li>To communicate with you about your account and updates</li>
+            <li>To improve our application and user experience</li>
+            <li>To detect and prevent technical issues and security threats</li>
+            <li>To comply with legal obligations</li>
+        </ul>
+        
+        <h2>4. Legal Basis for Processing (GDPR)</h2>
+        <p>We process your personal data based on:</p>
+        <ul>
+            <li><strong>Consent:</strong> You have given clear consent for us to process your personal data</li>
+            <li><strong>Contract:</strong> Processing is necessary for the performance of our service contract</li>
+            <li><strong>Legitimate Interests:</strong> Processing is necessary for our legitimate business interests</li>
+        </ul>
+        
+        <h2>5. Data Sharing and Disclosure</h2>
+        <p>We do not sell, trade, or rent your personal information to third parties. We may share data with:</p>
+        <ul>
+            <li><strong>Pinterest:</strong> Through their official API to perform requested publishing actions</li>
+            <li><strong>Service Providers:</strong> Trusted third parties who assist our operations (hosting, analytics)</li>
+            <li><strong>Legal Requirements:</strong> When required by law, court order, or governmental regulation</li>
+        </ul>
+        
+        <h2>6. Data Security</h2>
+        <p>We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. These measures include SSL encryption, regular security assessments, and limited access to personal data.</p>
+        
+        <h2>7. Data Retention</h2>
+        <p>We retain your personal data only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. You may request deletion of your data at any time.</p>
+        
+        <h2>8. Your Rights</h2>
+        <p>Depending on your location, you may have the following rights:</p>
+        <ul>
+            <li><strong>Right to Access:</strong> Request copies of your personal data</li>
+            <li><strong>Right to Rectification:</strong> Request correction of inaccurate data</li>
+            <li><strong>Right to Erasure:</strong> Request deletion of your personal data</li>
+            <li><strong>Right to Restrict Processing:</strong> Request limitation of data processing</li>
+            <li><strong>Right to Data Portability:</strong> Request transfer of your data</li>
+            <li><strong>Right to Object:</strong> Object to processing of your personal data</li>
+            <li><strong>Right to Withdraw Consent:</strong> Withdraw consent at any time</li>
+        </ul>
+        
+        <h2>9. Cookies and Similar Technologies</h2>
+        <p>We use cookies and similar tracking technologies to enhance your experience, analyze usage patterns, and improve our services. You can control cookie settings through your browser preferences.</p>
+        
+        <h2>10. Third-Party Services</h2>
+        <p>Our application integrates with Pinterest. Your use of Pinterest is subject to their <a href="https://policy.pinterest.com/en/privacy-policy" target="_blank">Privacy Policy</a> and <a href="https://policy.pinterest.com/en/terms-of-service" target="_blank">Terms of Service</a>. We are not responsible for the privacy practices of third-party services.</p>
+        
+        <h2>11. Children's Privacy</h2>
+        <p>Our service is not intended for users under 13 years of age. We do not knowingly collect personal data from children. If we become aware that we have collected data from a child, we will delete it immediately.</p>
+        
+        <h2>12. International Data Transfers</h2>
+        <p>Your information may be transferred to and processed in countries other than your country of residence. We ensure appropriate safeguards are in place to protect your data.</p>
+        
+        <h2>13. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy periodically to reflect changes in our practices or legal requirements. We will notify you of any material changes by posting the updated policy on this page with a revised "Last updated" date.</p>
+        
+        <h2>14. Contact Us</h2>
+        <div class="contact-info">
+            <p>If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+            <p style="margin-top: 15px;">
+                <strong>${companyName}</strong><br>
+                Email: <a href="mailto:${contactEmail}">${contactEmail}</a><br>
+                ${companyAddress ? `Address: ${companyAddress}<br>` : ''}
+                ${websiteUrl ? `Website: <a href="${websiteUrl}" target="_blank">${websiteUrl}</a>` : ''}
+            </p>
+        </div>
+        
+        <footer>
+            <p>© ${new Date().getFullYear()} ${companyName}. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>`;
+
+            document.getElementById('successMessage').classList.add('show');
+            document.getElementById('copyBtn').style.display = 'flex';
+            document.getElementById('downloadBtn').style.display = 'flex';
+            
+            // Generate suggested URL
+            const suggestedUrl = `https://yourusername.github.io/privacy-policy.html`;
+            document.getElementById('urlDisplay').innerHTML = `
+                <strong>الرابط المقترح:</strong><br>
+                ${suggestedUrl}<br><br>
+                <small>استبدل yourusername باسم المستخدم الخاص بك في GitHub</small>
+            `;
+            
+            // Scroll to success message
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function copyHTML() {
+            navigator.clipboard.writeText(generatedHTML);
+            alert('تم نسخ كود HTML!');
+        }
+
+        function downloadHTML() {
+            const appName = document.getElementById('appName').value || 'privacy-policy';
+            const blob = new Blob([generatedHTML], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'privacy-policy.html';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
